@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>KQPS Application Form</title>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>APPLICATION FORM.</h3>
+                    <h:form id="form1" enctype="multipart/form-data" prependId="false">
+            <p:growl id="msgs" showDetail="true" />
+             <p:tabView orientation="left">
+        <p:tab title="Applicant Details" >
+           
+            <p:panelGrid columns="1" style="float:left;width: 10%;">
+                
+                <h:graphicImage alt="student photo" id="student_img" value="#{applicationForm.uploadedImage}"  width="100px" />
+                
+                <p:fileUpload multiple="true" fileUploadListener="#{applicationForm.upload}" auto="true"  mode="advanced" dragDropSupport="false"
+           update="student_img pht" sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                <h:inputHidden id="pht" value="#{applicationForm.photo}"></h:inputHidden>
+            </p:panelGrid>
+            <p:panelGrid columns="3" style="width: 80%;float: right;">
+                
+                <p:outputLabel value="First Name" style="font-size: 10px;"></p:outputLabel>
+                 <p:outputLabel value="Middle Name" style="font-size: 10px;"></p:outputLabel>
+                  <p:outputLabel value="Last Name" style="font-size: 10px;"></p:outputLabel>
+                  
+                  <h:inputText value="#{applicationForm.fname}" />
+                  <h:inputText value="#{applicationForm.mname}" />
+                  <h:inputText value="#{applicationForm.lname}" />
+                  
+                    <p:outputLabel value="Date of Birth" style="font-size: 10px;"></p:outputLabel>
+                 <p:outputLabel value="Gender" style="font-size: 10px;"></p:outputLabel>
+                  <p:outputLabel value="Class" style="font-size: 10px;"></p:outputLabel>
+                  
+                 
+                  <p:calendar id="popup" pattern="yyyy-MMM-dd"  class="input-sm">
+                  </p:calendar>
+                  <p:selectOneRadio value="#{applicationForm.gender}" layout="grid" columns="1" style="font-size: 10px;">
+            <f:selectItem itemLabel="Male" itemValue="Male" />
+            <f:selectItem itemLabel="Female" itemValue="Female" />
+        </p:selectOneRadio>
+                  <h:selectOneMenu id="console" value="#{applicationForm.student_class}" style="width:135px" class="dropdown ">
+            <f:selectItem itemLabel="Primary 1" itemValue="Primary 1" />
+            <f:selectItem itemLabel="Primary 2" itemValue="Primary 2" />
+            <f:selectItem itemLabel="Primary 3" itemValue="Primary 3" />
+            <f:selectItem itemLabel="Primary 4" itemValue="Primary 4" />
+        </h:selectOneMenu>
+            </p:panelGrid>
+            <h:panelGrid columns="1" style="width: 100%;" role="presentation">
+                <h:outputLabel value="OtherInfo:" style="font-size: 10px;"/>
+                <h:inputTextarea style="width: 100%;" value="#{applicationForm.otherInfo}"></h:inputTextarea>
+            </h:panelGrid>
+           
+        </p:tab>
+        <p:tab title="Parent Details">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                <h:outputText value="Francis Ford Coppola's legendary..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Health Check">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="After a break of more than 15 years..." />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+           
+            <h:panelGrid columns="3" style="float: right;">
+                <h:commandButton value="save" style="margin-top: 10px;" action="#{applicationForm.addStudent}" >
+                  
+                </h:commandButton>
+                    <p:commandButton value="Cancel" style="margin-top: 10px;"/>
+                    <h:outputText value="#{applicationForm.status}" id="status"/>
+                </h:panelGrid>
+            <div class="clearfix"></div>
+            <p:spacer></p:spacer>
+            <p:fieldset toggleable="true" toggleSpeed="500" collapsed="true" legend="Existing Applications:"/>
+        </h:form>
+                    </div>
+                </div>
+            </div>
+    </h:body>
+</html>
+

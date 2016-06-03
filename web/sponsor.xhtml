@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+        <p:ring id="basic" value="#{ringView.students}" var="student">
+        <p:outputPanel style="text-align: center;" layout="block">
+            #{student.fname}
+            <p:graphicImage value="#{student.photo}" width="50px"/>
+            <br />
+            <p:commandButton  icon="ui-icon-search" title="View" oncomplete="PF('studentDialog').show();" update=":form:studentDetail" >
+                <f:setPropertyActionListener value="#{student}" target="#{ringView.selectedStudent}" />
+            </p:commandButton>
+        </p:outputPanel>
+    </p:ring>
+ 
+         <p:dialog header="Child Info" widgetVar="studentDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="auto">
+        <p:outputPanel id="studentDetail" style="text-align:center;" layout="block">
+            <p:panelGrid  columns="2" rendered="#{not empty ringView.selectedStudent}" columnClasses="value">
+                <f:facet name="header">
+                    <p:graphicImage value="#{ringView.selectedStudent.photo}" width="200px" /> 
+                </f:facet>
+ 
+                <h:outputText value="First Name:" />
+                <h:outputText value="#{ringView.selectedStudent.fname}" />
+ <h:outputText value="First Name:" />
+ <h:inputText />
+ <h:outputText value="First Name:" />
+ <h:inputText />
+               
+            </p:panelGrid>
+        </p:outputPanel>
+             </p:dialog>
+            <p:link value="click to add new child.." outcome="newjsf1"></p:link>
+</h:form>
+    </h:body>
+</html>
+

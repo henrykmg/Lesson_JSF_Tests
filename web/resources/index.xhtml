@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+       
+    </h:head>
+    <h:body>
+        <h:form id="form1" enctype="multipart/form-data" prependId="false">
+
+<h:panelGrid columns="1" columnClasses="txt,input-lg">
+    <p:fileUpload fileUploadListener="#{uploadBean.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                          update="messages" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png|csv)$/" />
+    <p:growl id="messages" showDetail="true" />
+</h:panelGrid>
+              
+            <h:link value="http://localhost:8080/Quiz_2/images/201605191232328681952777464192397.csv" ></h:link>
+         
+            <h:commandButton actionListener="#{uploadBean.loadData}" id="btn" value="Load">
+                <f:ajax execute="form1:btn form1:qq form1:dt" render="form1:qq form1:dt"/>
+            </h:commandButton>
+            
+            <h:outputText id="qq" value="#{uploadBean.question[0]}"></h:outputText>
+            <p:dataTable value="#{uploadBean.qn}" var="s" id="dt" >
+              <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Question" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{s.question}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{s.question}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+                 <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Answer" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{s.answer}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{s.answer}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+                  <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Option1" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{s.option1}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{s.option1}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+                  <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Option2" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{s.option2}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{s.option2}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+                  <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Option3" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{s.option3}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{s.option3}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+                  <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Option4" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{s.option4}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{s.option4}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+                  <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Level" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{s.level}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{s.level}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+            </p:dataTable>
+          
+      
+            
+            
+            
+            <style>
+                .ui-accordion,.ui-accordion-header,.ui-accordion-content{
+                    background-color: #ff6600;
+                }
+                .ui-autocomplete{
+                    border:5px solid green;
+                    line-height: 50px;
+                    border-radius: 20px;
+                    background-color: green;
+                }
+                .ui-autocomplete-input,.ui-autocomplete-panel{
+                    border:5px solid white;
+                    line-height: 30px;
+                    border-radius: 10px;
+                    margin-top: 20px;
+                    background-color: greenyellow;
+                }
+                
+            </style>
+            
+     
+     
+            
+            <p:panel id="pnl" header="My Panel">
+//content
+<p:commandButton id="saveBtn" value="Save" />
+</p:panel>
+<p:blockUI block="pnl" trigger="saveBtn" />
+            
+            <div id="d1">
+                
+                <h1>Hello<h:outputText /></h1>
+            </div>
+     
+           <p:autoComplete value="#{uploadBean.text}" completeMethod="#{uploadBean.complete}">
+<p:ajax event="itemSelect" listener="#{uploadBean.handleSelect}" update="msg" />
+</p:autoComplete>
+<p:messages id="msg" />
+
+      </h:form>
+    </h:body>
+</html>
+

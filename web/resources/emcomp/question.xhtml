@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+<title>This content will not be displayed</title>
+<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+<h:outputStylesheet library="css" name="main.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+<composite:interface>
+<composite:attribute name="value" required="false"/>
+</composite:interface>
+<composite:implementation>
+    <h:panelGrid columns="3">
+        <h:outputLabel value="Username"></h:outputLabel>
+        <h:inputText value="#{cc.attrs.value}"></h:inputText>
+<h:outputLabel value="validation"></h:outputLabel>
+<h:outputLabel value="Password: "></h:outputLabel>
+<h:inputText value="#{cc.attrs.value}"></h:inputText>
+<h:outputLabel value="validation"></h:outputLabel>
+<h:outputLabel value="space"></h:outputLabel>
+<h:commandButton value="Login"></h:commandButton>
+<h:outputLabel value="validation"></h:outputLabel>
+    </h:panelGrid>
+
+</composite:implementation>
+</h:body>
+</html>
