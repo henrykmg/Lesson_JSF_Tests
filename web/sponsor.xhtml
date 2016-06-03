@@ -6,15 +6,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+         <h:outputStylesheet library="css" name="bootstrap.css"/>
     </h:head>
     <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
         <h:form id="form">
-        <p:ring id="basic" value="#{ringView.students}" var="student">
+            <p:ring id="basic" value="#{ringView.students}" var="student">
         <p:outputPanel style="text-align: center;" layout="block">
             #{student.fname}
             <p:graphicImage value="#{student.photo}" width="50px"/>
             <br />
-            <p:commandButton  icon="ui-icon-search" title="View" oncomplete="PF('studentDialog').show();" update=":form:studentDetail" >
+            <p:commandButton value="Sponsor #{student.fname}" icon="ui-icon-search" title="View" oncomplete="PF('studentDialog').show();" update=":form:studentDetail" >
                 <f:setPropertyActionListener value="#{student}" target="#{ringView.selectedStudent}" />
             </p:commandButton>
         </p:outputPanel>
@@ -37,8 +41,11 @@
             </p:panelGrid>
         </p:outputPanel>
              </p:dialog>
-            <p:link value="click to add new child.." outcome="newjsf1"></p:link>
+          <p:link value="click to add new child.." outcome="newjsf1"></p:link>   
 </h:form>
+                </div>
+               
+            </div></div>
     </h:body>
 </html>
 
